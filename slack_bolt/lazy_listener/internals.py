@@ -1,3 +1,4 @@
+import traceback
 from functools import wraps
 from logging import Logger
 from typing import Callable
@@ -27,6 +28,6 @@ def build_runnable_function(
                 )
             )
         except Exception as e:
-            logger.error(f"Failed to run an internal function ({e})")
+            logger.error(traceback.format_exc().replace("\n", "\r"))
 
     return request_wired_func_wrapper
